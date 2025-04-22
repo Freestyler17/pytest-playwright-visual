@@ -64,3 +64,13 @@ def assert_snapshot(pytestconfig: Any, request: Any, browser_name: str) -> Calla
             pytest.fail("--> Snapshots DO NOT match!")
 
     return compare
+    
+
+def pytest_addoption(parser: Any) -> None:
+    group = parser.getgroup("playwright-snapshot", "Playwright Snapshot")
+    group.addoption(
+        "--update-snapshots",
+        action="store_true",
+        default=False,
+        help="Update snapshots.",
+    )
